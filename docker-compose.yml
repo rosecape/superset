@@ -17,7 +17,7 @@
 x-superset-image: &superset-image apachesuperset.docker.scarf.sh/apache/superset:${TAG:-latest-dev}
 x-superset-user: &superset-user root
 x-superset-depends-on: &superset-depends-on
-  - db
+  - superset_db
   - redis
 x-superset-volumes: &superset-volumes
   # /app/pythonpath_docker will be appended to the PYTHONPATH in the final container
@@ -48,7 +48,7 @@ services:
     volumes:
       - redis:/data
 
-  db:
+  superset_db:
     env_file: docker/.env
     image: postgres:15
     container_name: superset_db
